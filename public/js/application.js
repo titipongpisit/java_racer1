@@ -8,6 +8,7 @@ $(document).ready(function() {
     }
 
     if ($('#player1_strip td:last-child').hasClass('active')){
+      // code would go here
       player_wins('.player1')
       player_loses('#player2_strip .active')
     } 
