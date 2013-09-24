@@ -31,7 +31,8 @@ post '/winner' do
   @winner = User.find_by_name(params[:winner])
   @loser = User.find_by_name(params[:loser])
   @time = params[:time]
-  @record = Record.create(user_id: @winner, game_id: @game.id, time: @time, winner_name: @winner.name, winner: @winner.id)
-  @record2 = Record.create(user_id: @loser, game_id: @game.id, time: @time, winner_name: @winner.name, winner: @winner.id)  
+  @record = Record.create(user_id: @winner.id, game_id: @game.id, time: @time, winner_name: @winner.name, winner: @winner.id)
+  @record2 = Record.create(user_id: @loser.id, game_id: @game.id, time: @time, winner_name: @winner.name, winner: @winner.id)  
+  erb :result, layout: false 
 end   
 

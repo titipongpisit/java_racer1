@@ -12,6 +12,9 @@ $(document).ready(function() {
       advance_player('#player1_strip .active')
     }
     else if (event.which === 80){
+      if (start === 0){
+        start = Date.now();
+      }
       advance_player('#player2_strip .active')
     }
 
@@ -21,18 +24,22 @@ $(document).ready(function() {
       var url = '/winner'
       var data = {winner: player1, loser: player2, time: total_time}
       $.post(url, data, function(response){
-        console.log(player1);
+        $('.container').append(response);
       });
-      player_wins('.player1')
-      player_loses('#player2_strip .active')
+      // player_loses('#player2_strip .active')
     } 
     else if ($('#player2_strip td:last-child').hasClass('active')){
-      player_wins('.player2')
+      var end_time = Date.now();
+      total_time = ((end_time - start)/1000);
+      var url = '/winner'
+      var data = {winner: player2, loser: player1, time: total_time}
+      $.post(url, data, function(response){
+        $('.container').append(response);
+      });
       player_loses('#player1_strip .active')
     }
   });
 });
-
 
 
 var advance_player = function(player){
