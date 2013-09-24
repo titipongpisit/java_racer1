@@ -1,7 +1,8 @@
-
+<!-- 
+<div id="player1"><%=@player1.name%></div>  -->
 
 <table class="racer_table">
-  <tr id="player1_strip">
+  <tr id="player1_strip" data-value="<%= @player1.name %>">
     <td><%= @player1.name %></td>
     <td class="active"></td>
     <td></td>
@@ -14,7 +15,7 @@
     <td></td>
     <td></td>
   </tr>
-  <tr id="player2_strip">
+  <tr id="player2_strip" data-value="<%= @player2.name %>">
     <td><%= @player2.name %></td>
     <td class="active"></td>
     <td></td>
@@ -31,3 +32,6 @@
 
 <div class="player1"> player 1 wins </div>
 <div class="player2"> player 2 wins </div>
+
+<!-- data-value="<%= rand(1..6) %> -->
+

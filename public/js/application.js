@@ -1,6 +1,14 @@
 $(document).ready(function() {
+  var player1 = $('#player1_strip').data('value') 
+  var player2 = $('#player2_strip').data('value') 
+  console.log(player1)
+
+    var start = 0;
   $(document).on('keyup', function(event){
     if (event.which === 81){
+      if (start === 0){
+        start = Date.now();
+      }
       advance_player('#player1_strip .active')
     }
     else if (event.which === 80){
@@ -8,7 +16,13 @@ $(document).ready(function() {
     }
 
     if ($('#player1_strip td:last-child').hasClass('active')){
-      // code would go here
+      var end_time = Date.now();
+      total_time = ((end_time - start)/1000);
+      var url = '/winner'
+      var data = {winner: player1, loser: player2, time: total_time}
+      $.post(url, data, function(response){
+        console.log(player1);
+      });
       player_wins('.player1')
       player_loses('#player2_strip .active')
     } 
@@ -33,4 +47,3 @@ var player_wins = function(winner){
 var player_loses = function(player){
   $(player).removeClass('active');
 }
-

@@ -4,7 +4,8 @@ class CreateRecords < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :game
       t.integer :time 
-      t.boolean :winner
+      t.integer :winner
+      t.string  :winner_name
       t.timestamps
     end 
   end
